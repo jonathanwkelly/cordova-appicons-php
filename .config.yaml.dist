@@ -1,0 +1,33 @@
+debug: true
+xml: true
+icons:
+	ios:
+		in: icon-512x512.png
+		out: 
+			base: res/ios/icon
+			files:
+				icon-40: 40
+				icon-40@2x: 80
+				icon-50: 50
+				icon-50@2x: 100
+				icon-60: 60
+				icon-60@2x: 120
+				icon-60@3x: 180
+				icon-72: 72
+				icon-72@2x: 144
+				icon-76: 76
+				icon-76@2x: 152
+				icon-small: 29
+				icon-small@2x: 58
+				icon: 57
+				icon@2x: 114
+	android:
+		in: icon-512x512.png
+		out: 
+			base: res/android
+			files:
+				drawable/icon: 96
+				drawable-hdpi/icon: 72
+				drawable-ldpi/icon: 36
+				drawable-mdpi/icon: 48
+				drawable-xhdpi/icon: 96
