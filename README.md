@@ -25,3 +25,5 @@ The script is meant to be run from the command-line
 $ cd /path/to/cordova-appicons/php
 $ php ./generate.php
 ```
+
+<img src="http://g.recordit.co/y0WFLjRIpm.gif">
