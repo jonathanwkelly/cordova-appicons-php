@@ -25,31 +25,32 @@ foreach($YAML['icons'] as $platform => $cfg)
 		bomb(sprintf('Source icon "%s" does not exist or is not readable.', $inPath));
 
 	// define the absolute path to the output dir
-	$outBaseDir = ensurePath(sprintf('%s/%s', BASE, rtrim($cfg['out']['base'])));
+	$relOutDir = rtrim($cfg['out']['base'], '/');
+	$absOutDir = ensurePath(sprintf('%s/%s', BASE, $relOutDir));
 
 	// iterate through the "out" config for this platform
 	foreach($cfg['out']['files'] as $pathname => $dims)
 	{
-
 		// define the absolute path to the output image
-		$thisImagePath = sprintf('%s/%s.%s', $outBaseDir, $pathname, pathinfo($inPath, PATHINFO_EXTENSION));
+		$relImgPath = sprintf('%s.%s', $pathname, pathinfo($inPath, PATHINFO_EXTENSION));
+		$absImgPath = sprintf('%s/%s', $absOutDir, $relImgPath);
 
 		// ensure the dir for this particular image
-		$thisOutBaseDir = ensurePath(pathinfo($thisImagePath, PATHINFO_DIRNAME));
+		$thisAbsOutDir = ensurePath(pathinfo($absImgPath, PATHINFO_DIRNAME));
 
 		// @debug
-		debug(sprintf('Outputting to "%s"', $thisOutBaseDir));
+		debug(sprintf('Outputting to "%s"', $thisAbsOutDir));
 
 		// generate the file
-		exec(sprintf('convert %s -resize %d %s', $inPath, $dims, $thisImagePath), $output, $error);
+		exec(sprintf('convert %s -resize %d %s', $inPath, $dims, $absImgPath), $output, $error);
 
 		if($error)
-			bomb('Could not generate image "%s"', $thisImagePath);
+			bomb('Could not generate image "%s"', $absImgPath);
 
 		$XML .= sprintf(
 			'  <icon src="%s/%s" width="%d" height="%d" />', 
-			$cfg['out']['base'], 
-			pathinfo($thisImagePath, PATHINFO_BASENAME), 
+			$relOutDir,
+			$relImgPath, 
 			$dims, 
 			$dims
 		) . "\n";
