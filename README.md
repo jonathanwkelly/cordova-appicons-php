@@ -26,4 +26,4 @@ $ cd /path/to/cordova-appicons/php
 $ php ./generate.php
 ```
 
-<img src="http://g.recordit.co/y0WFLjRIpm.gif">
+<img src="https://s3-us-west-2.amazonaws.com/webslinger/cordova-appicons-php-example.gif">
