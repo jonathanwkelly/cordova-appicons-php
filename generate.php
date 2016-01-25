@@ -4,6 +4,9 @@ require_once realpath(dirname(__FILE__)) . '/Spyc.php';
 
 $YAML = Spyc::YAMLLoad(realpath(dirname(__FILE__)) . '/config.yaml');
 
+if(!isset($YAML['icons']))
+	exit('config.yaml does not exist or could not be read');
+
 // set some constants from config
 define('BASE', realpath(getcwd()));
 define('DEBUG', (bool) @$YAML['debug']);
